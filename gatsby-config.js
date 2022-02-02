@@ -1,9 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
-    siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
+    title: `ArtDecorLab`,
+    description: `Laboratorio dell'Arte Decorativo`,
+    author: `@zlattt`,
+    siteUrl: `https://www.artdecorlab.com/`,
   },
   plugins: [
     'gatsby-plugin-postcss',
@@ -21,10 +21,10 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `ArtDecorLab`,
+        short_name: `ArtDecorLab`,
         start_url: `/`,
-        background_color: `#663399`,
+        background_color: `#d9ed92`,
         // This will impact how browsers show your PWA/website
         // https://css-tricks.com/meta-theme-color-and-trickery/
         // theme_color: `#663399`,

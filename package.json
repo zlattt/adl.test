@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "artdecorlab.com",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "Laboratorio dell'Arte Decorativo",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Elias Gold <bonojibonoji@gmail.com>",
   "dependencies": {
     "gatsby": "^4.6.0",
     "gatsby-plugin-gatsby-cloud": "^4.6.0",
@@ -27,7 +27,7 @@
     "tailwindcss": "^3.0.18"
   },
   "keywords": [
-    "gatsby"
+    "react, gsap, gatsby, tailwindcss"
   ],
   "license": "0BSD",
   "scripts": {
@@ -41,9 +41,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": ""
   }
 }
