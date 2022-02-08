@@ -9,7 +9,7 @@ import * as React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
-import { Helmet } from "react-helmet"
+//import { Helmet } from "react-helmet"
 
 import Header from "./header"
 //import "./layout.css"
@@ -27,9 +27,9 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <Helmet>
+      {/*<Helmet>
         <script src="/tailwind3018.js"></script>
-      </Helmet>
+      </Helmet>*/}
       
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
       <div
