@@ -2,10 +2,23 @@ module.exports = {
   siteMetadata: {
     title: `ArtDecorLab`,
     description: `Laboratorio dell'Arte Decorativo`,
-    author: `@zlattt`,
+    author: `www.artdecorlab.com`,
     siteUrl: `https://www.artdecorlab.com/`,
   },
   plugins: [
+    /*{
+      resolve: `gatsby-transformer-yaml`,
+      options: {
+        typeName: `mYaml`, // a fixed string (graphql query root name)
+      },
+    },*/
+    `gatsby-transformer-yaml`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/data/`,
+      },
+    },
     'gatsby-plugin-postcss',
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
