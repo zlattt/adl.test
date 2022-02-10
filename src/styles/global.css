@@ -7,20 +7,12 @@
   src: local("Esqadero FF CY 4F"), local("EsqaderoFFCY4F"), url("../fonts/esqaderoffcy4f.woff2") format("woff2"), url("../fonts/esqaderoffcy4f.woff") format("woff"), url("../fonts/esqaderoffcy4f.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
+  /*font-display: block;*/
 }
 
-@layer components {
+/*@layer components {
   .half-wrapper {
     @apply 
       flex-1
-      font-esqadero
-      font-medium
-    ;
-  /*  background-color: theme('colors.white');
-    border-radius: theme('borderRadius.lg');
-    padding: theme('spacing.6');
-    box-shadow: theme('boxShadow.xl');
-  */
   }
-  /* ... */
-}
+}*/

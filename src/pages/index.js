@@ -20,32 +20,35 @@ export const query = graphql`
 const IndexPage = ({ data }) => (
   <Layout>
     <Seo title={data.indexPageYaml.title} />
-    <h1>{data.indexPageYaml.title}</h1>
+    
     <div id="double-name-wrapper" 
-         class="flex flex-wrap items-center justify-center">
-     <div id="left-wrapper" class="half-wrapper text-right"> 
+         class="flex flex-wrap items-center justify-center
+                font-esqadero leading-[1.5em] tracking-[0.15em] [text-shadow:1px_1px_2px_rgb(0,0,0)]  
+               ">
+     <div id="wrapper-l" class="flex-1 text-right "> 
        <p>
          {data.indexPageYaml.titleDescriptedRu
            .split(' ')
-             .map( line => 
-              <> {line}<br/> </>
+             .map(line => 
+              <> {line} <br/> </>
           )}
        </p>
       </div> 
-      <div id="right-wrapper" class="half-wrapper"> 
+      <div id="v-divider" class="px-[0.5em]">
+
+      </div>
+      <div id="wrapper-r" class="flex-1"> 
        <p>
          {data.indexPageYaml.titleDescriptedIt
            .split(' ')
              .map(line => 
-             <> {line}<br/> </>
+             <> {line} <br/> </>
           )}
        </p>
       </div> 
     </div>
-    <p class="w-24 md:w-32 lg:w-48
-              text-red-500
-    ">
-      Now go build something great.
+    <p class="">
+      Студия Интерьерного Декора
     </p>
     <StaticImage
       src="../images/gatsby-astronaut.png"
