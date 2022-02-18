@@ -18,35 +18,38 @@ export const query = graphql`
 `
 
 const IndexPage = ({ data }) => (
+  <>
+  
   <Layout>
     <Seo title={data.indexPageYaml.title} />
-    
     <div id="double-name-wrapper" 
-         class="flex flex-wrap items-center justify-center
-                font-esqadero leading-[1.5em] tracking-[0.15em] [text-shadow:1px_1px_2px_rgb(0,0,0)]  
-               ">
-     <div id="wrapper-l" class="flex-1 text-right "> 
-       <p>
-         {data.indexPageYaml.titleDescriptedRu
-           .split(' ')
-             .map(line => 
-              <> {line} <br/> </>
-          )}
-       </p>
-      </div> 
-      <div id="v-divider" class="px-[0.5em]">
+  class="mt-12 mb-4 flex flex-wrap items-center justify-center
+         font-esqadero leading-[1.5em] tracking-[0.15em] 
+         [text-shadow:1px_1px_1px_rgb(77,77,77)] xs:[text-shadow:1px_1px_2px_rgb(0,0,0)]  
+        ">
+<div id="wrapper-l" class="text-right "> 
+<p>
+  {data.indexPageYaml.titleDescriptedRu
+    .split(' ')
+      .map( line => 
+       <> {line} <br/> </>
+   )}
+</p>
+</div> 
+<div id="v-divider" class="px-[0.5em]">
 
-      </div>
-      <div id="wrapper-r" class="flex-1"> 
-       <p>
-         {data.indexPageYaml.titleDescriptedIt
-           .split(' ')
-             .map(line => 
-             <> {line} <br/> </>
-          )}
-       </p>
-      </div> 
-    </div>
+</div>
+<div id="wrapper-r" class=""> 
+<p>
+  {data.indexPageYaml.titleDescriptedIt
+    .split(' ')
+      .map( line => 
+      <> {line} <br/> </>
+   )}
+</p>
+</div> 
+</div>
+
     <p class="">
       Студия Интерьерного Декора
     </p>
@@ -65,6 +68,7 @@ const IndexPage = ({ data }) => (
       <Link to="/using-dsg">Go to "Using DSG"</Link>
     </p>
   </Layout>
+  </>
 )
 
 export default IndexPage

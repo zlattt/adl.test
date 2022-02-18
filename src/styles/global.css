@@ -10,9 +10,33 @@
   /*font-display: block;*/
 }
 
-/*@layer components {
-  .half-wrapper {
+@layer components {
+  /*.half-wrapper {
     @apply 
       flex-1
+  }*/
+
+  ._headerGrid {
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: auto auto auto; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+      ". . ."
+      ". logo menu"
+      ". . ."; 
+
   }
-}*/
+
+  ._headerGridLogo {
+    grid-area: logo;
+  }
+
+  ._headerGridBreadcrumbs { 
+    grid-area: breadcrumbs; 
+  }
+
+  ._headerGridMenuButton {
+    grid-area: menu;
+  }
+}
