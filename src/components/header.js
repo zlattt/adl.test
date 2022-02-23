@@ -1,25 +1,61 @@
 import * as React from "react"
-import { useRef, useState, useEffect } from "react"
+import { useEffect, useRef, useState } from "react"
 import PropTypes from "prop-types"
 import { Link } from "gatsby"
 
 import Menu from "../components/menu"
-import useRefDimensions from "../components/useRefDimensions"
+import { useCurrentWidth } from "../components/react-breakpoints-hook"
 
 const Header = ({ siteTitle, pageTitle }) => {
-  
-//to-do: consider making a fixed positioned wrapper for header and menu, making them siblings, 
-//on active menu make wrapper 100vh, set menu absolute positioned with top value equals headerRef.current.offsetHeight,
-//height equals (100vh-headerRef.current.offsetHeight)
-
-//consider flex/grid wrapper with some auto height/positioning
 
   const headerRef = useRef();
+
+
+  useEffect(() => {console.log('hi from header')})
+  useEffect(() => {console.log(headerRef)})
+
+  const [dimensions, setDimensions] = useState({
+    height: window.innerHeight,
+    width: window.innerWidth
+  });
+
+  useEffect(() => {
+
+    console.log('hi from handle resize useEffect');
+
+    const debouncedHandleResize = debounce(function handleResize() {
+      setDimensions({
+        height: window.innerHeight,
+        width: window.innerWidth
+      });
+    }, 1000);
+
+    window.addEventListener("resize", debouncedHandleResize);
+
+    return _ => {
+      window.removeEventListener("resize", debouncedHandleResize);
+    };
+
+  });
   
-  let h = useRefDimensions(headerRef);
+  function debounce(fn, ms) {
+    let timer;
+    return _ => {
+      clearTimeout(timer);
+      timer = setTimeout(_ => {
+        timer = null;
+        fn.apply(this, arguments);
+      }, ms);
+    };
+  }
+
+  const width = useCurrentWidth();
+
+  useEffect(() => {console.log(dimensions)})
+  useEffect(() => {console.log(`width hook - ${width}`)})
 
 return (
-
+  <>
   <header ref={headerRef} class="_headerGrid 
                                  border-b border-black
                                  fixed top-0 z-[11]
@@ -39,16 +75,14 @@ return (
       </p>
     </div> 
     
-    {/*<div class="_headerGridBreadcrumbs"> 
-      <h1>breadcrumbs-{pageTitle}</h1>
-    </div>*/}
-
     <div class="_headerGridMenuButton flex justify-end items-center pr-4">
-      <Menu headerDimensions={h} class=""/>
+      <Menu dimensions={dimensions} width={width}/>
     </div>
-
+  
+    <div class="_headerGridBreadcrumbs"><p>{width} - check {dimensions.width} x {dimensions.height}</p></div>
+   
   </header>
-
+  </>
 )}
 
 Header.propTypes = {
