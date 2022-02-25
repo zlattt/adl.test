@@ -87,7 +87,7 @@ const menuItems = [
 
 const Menu = ({ dimensions, width}) => {
 
-  const [menuOpen, setMenuOpen] = useState(true);
+  //const [menuOpen, setMenuOpen] = useState(true);
 
   useEffect(() => console.log('hi from menu'));
   useEffect(() => console.log(dimensions), []);
@@ -96,36 +96,22 @@ const Menu = ({ dimensions, width}) => {
   
 
   //const headerDimensions = useRefDimensions(headerRef);
+  
+  //absolute left-0 bottom-0 w-[100%]
+  //absolute right-0 bottom-[50px] w-[100%]
 
 return (
   <>
 
-  <button name="Menu" onClick={() => setMenuOpen(!menuOpen)} class="pb-1">
-     {/*<svg class="h-5 w-5 
-                    xs:h-6 xs:w-6 
-                    md:h-7 md:w-7" 
-          fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-      <path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
-    </svg>*/}
-    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28">
-      <g transform="matrix(2,0,0,2,0,0)"><g>
-        <line x1="13.5" y1="2" x2="0.5" y2="2" style={{fill: "none", stroke: "#000000", strokeLinecap: "round", strokeLinejoin: "round"}}></line>
-        <line x1="13.5" y1="7" x2="0.5" y2="7" style={{fill: "none", stroke: "#000000", strokeLinecap: "round", strokeLinejoin: "round"}}></line>
-        <line x1="13.5" y1="12" x2="0.5" y2="12" style={{fill: "none", stroke: "#000000", strokeLinecap: "round", strokeLinejoin: "round"}}></line>
-      </g></g>
-    </svg>
-  </button>
-
-  { menuOpen &&
-  <div class="absolute left-0 bottom-0 w-[100%]
+  <div class="
             border border-black
             text-right
            ">
     <p>menu test - {dimensions.width} x {dimensions.height} - hook - {width}</p>
   </div>
-  }
+  
  
-  <div class="absolute right-0 bottom-[50px] w-[100%]
+  <div class="
           border border-black
          ">
     <p>menu test - {dimensions.width} x {dimensions.height} - hook - {width}</p>
