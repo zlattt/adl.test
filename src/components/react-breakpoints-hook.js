@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-//import { window, document } from "browser-monads";
+import { window, document } from "browser-monads";
 
 const getWidth = () => window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
