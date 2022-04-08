@@ -1,11 +1,11 @@
 import * as React from "react"
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useContext } from "react"
 //import PropTypes from "prop-types"
 import { Link } from "gatsby"
 
 import { gsap } from "gsap"
 
-import useRefDimensions from "../components/useRefDimensions"
+import Line from "../components/line"
 
 const loremIpsum = `The standard Lorem Ipsum passage, used since the 1500s
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
@@ -25,7 +25,7 @@ Section 1.10.33 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
 const menuItems = [
   {
     id: "1",
-    pageTitle: "О Нас",
+    pageTitle: "Главная",
     url: "/",
   },
   {
@@ -35,12 +35,12 @@ const menuItems = [
     subcat: [
       {
         id: "21",
-        pageTitle: "Интерьерные Картины",
+        pageTitle: "Декоративные Панно",
         url: "",
       },
       {
         id: "22",
-        pageTitle: "Римские Вазы",
+        pageTitle: "Садовые Вазы",
         url: "",
       },
       {
@@ -60,7 +60,7 @@ const menuItems = [
       },
       {
         id: "26",
-        pageTitle: "Живые Растительные Стенки и Инсталляции",
+        pageTitle: "Картины из Мха",
         url: "",
       }
 
@@ -93,7 +93,7 @@ const menuItems = [
       },
       {
         id: "35",
-        pageTitle: "Гипсовая Лепнина",
+        pageTitle: "Гипсовая Лепнина и Молдинги",
         url: "",
       },   
     ]
@@ -110,79 +110,110 @@ const menuItems = [
   },
 ]
 
-const Menu = ({ dimensions, width }) => {
+const Menu = ({ menuIsOpen, headerColor }) => {
 
-  //const [menuOpen, setMenuOpen] = useState(true);
+  //const [menuOpen, setMenuOpen] = useState(menuIsOpen);
 
-  const tl = useRef(gsap.timeline())
+  //const tl = useRef(() => gsap.timeline());
+  const [tl, setTl] = useState();
 
-  useEffect(() => console.log('hi from menu'));
-  useEffect(() => console.log(dimensions));
-  useEffect(() => console.log(width));
-  
-  
 
-  //const headerDimensions = useRefDimensions(headerRef);
-  
-  //absolute left-0 bottom-0 w-[100%]
-  //absolute right-0 bottom-[50px] w-[100%]
+  const menuRef = useRef(null);
+  const menuItemsRef = useRef([]);
+  menuItemsRef.current = [];
 
+  useEffect(() => {
+    const tl = gsap.timeline({ paused: true, }).to(menuRef.current, { y: "0%", ease: "power2.inOut", });
+    setTl(tl);
+    console.log('setTl useEffect');
+  }, [])
+
+  useEffect(() => {
+    if (menuIsOpen !== null && tl) {
+      tl.play();
+      tl.reversed(!menuIsOpen);
+    }
+    console.log('menuIsOpen useEffect');
+  }, [menuIsOpen])
+
+
+
+  {//menuIsOpen ? "[pointerEvents:auto]" : "[transform:translate3d(0,-100%,0)]
+        //[transition:all_0.5s_ease-out]
+        }
 return (
   <>
-  <nav 
-    style={{
-      //display: `grid`,
-      //gridTemplateColumns: `1fr 1fr`,
-      //gridTemplateRows: `1fr 1fr 1fr 1fr 1fr`,
-    }}
-  >
-    <ul
-      style={{
-        display: `grid`,
-        gridTemplateColumns: `1fr 1fr`,
-        gridTemplateRows: `1fr 1fr 1fr 1fr 1fr`,
-        //gridArea: `1 / 1 / 6 / 2`,
+  <div ref={menuRef}
+       class={`
+        p-4 [overflow-y:auto]
         
-        //justifySelf: `center`,
-        //alignSelf: `center`,
-      }}        
-    >
+       `}
+       style={{ 
+         ...(menuIsOpen && {pointerEvents: `auto`}),
+         //height: `100%`,
+         //transition: `all 1s ease-out`,
+         height: `100%`,
+         transform: `translate(0, -100%)`,
+         backgroundColor: headerColor,
+       }}
+  >
 
-      {menuItems.map( (item, index) => 
-    
-      <li 
-        style={{
-          gridArea: `${index+1} / 1 / ${index+2} / 3`,
-        }}   
-        key="item.id"
+    <nav 
+         style={{
+           display: `grid`,
+           gridTemplateColumns: `1fr 1fr`,
+           //gridTemplateRows: `1fr 1fr 1fr 1fr 1fr`,
+         }}
+    >
+      <ul
+          style={{
+            display: `grid`,
+            gridAutoRows: `1fr`,
+
+            justifySelf: `center`,
+            alignSelf: `center`,
+          }}        
       >
 
-        <Link to={item.url}>
-          {index}. {item.pageTitle}
-        </Link>
+        { menuItems.map( (item, index) => 
+        <li key="item.id"
+            style={{
+              position: "relative",
+            }}
+        >
 
-        { item.subcat && <p>yes</p> }     
+          { index && 
+            <Line top="0" size="2" offset={index/menuItems.length} timeline={tl} duration="1" delay={(menuItems.length-index)*0.1} /> 
+          }
 
-      </li>
-        
-      )}
+          <Link to={ item.url }>
 
-    </ul>
-  </nav>
-  <div class="border border-black
-                 text-right">
-    <p>menu test - {dimensions.width} x {dimensions.height} - hook - {width}</p>
+            { index }. { item.pageTitle }
+            
+          </Link>
+
+          { item.subcat && <p>yes</p> }     
+
+        </li>
+        )}
+
+      </ul>
+    </nav>
+
+    <div 
+         style={{
+           position: `absolute`,
+           bottom: `2rem`,
+           right: `1rem`,
+           //textAlign: `right`,
+         }}
+    >     
+      <p>ArtDecorLab</p>
+    </div>
+          
+    <Line bottom="1rem" offset="0.3" />
+
   </div>
- 
-  <div class="border border-black">
-    <p>menu test - {dimensions.width} x {dimensions.height} - hook - {width}</p>
-  </div>
-  {/*      
-  <div class="border border-black">
-    <p>{loremIpsum}</p>
-  </div>
-  */}
-
   </>
 )}
 

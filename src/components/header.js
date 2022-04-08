@@ -1,62 +1,34 @@
 import * as React from "react"
-import { useEffect, useRef, useState, forwardRef, useLayoutEffect } from "react"
+import { useEffect, useRef, useState, useLayoutEffect, useContext } from "react"
 import PropTypes from "prop-types"
 import { Link } from "gatsby"
 
 import Menu from "../components/menu"
 import MenuButton from "../components/menu-button"
-import { useCurrentWidth } from "../components/react-breakpoints-hook"
+
+import TextOuterStroke from "../components/textOuterStroke"
 
 //import { useElementSize } from "usehooks-ts"
 
 import { useDimensions } from "../hooks/react-hook-dimensions/index"
 
-const Header = forwardRef( ( { siteTitle, pageTitle, getHeaderDimensions }, headerRef ) => {
+import LayoutContext from "../components/layoutContext"
 
-  function textOuterStrokeStyle (color, size) {
-    return({
-      textShadow: 
-      `
-       ${color}  -${size}px  -${size}px  0,
-       ${color}  0           -${size}px  0,
-       ${color}  ${size}px   -${size}px  0,
-       ${color}  ${size}px   0           0,
-       ${color}  ${size}px   ${size}px   0,
-       ${color}  0           ${size}px   0,
-       ${color}  -${size}px  ${size}px   0,
-       ${color}  -${size}px  0           0
-      `
-    })
-  }
+const Header = ({ siteTitle, pageTitle }) => {
 
-  const strokeColor = "blanchedalmond";
-  const headerColor = "transparent"
+  const strokeColor = "black";
+  const headerColor = "white"
   const fontColor = "black"
   //cadetblue
 
-  //const headerRef = useRef();
-
   const [menuIsOpen, setMenuIsOpen] = useState(null);
-
-  useEffect(() => {console.log('hi from header')})
-  useEffect(() => {console.log(headerRef)})
-
-  //const [dimensions, setDimensions] = useState({
-  //  height: window.innerHeight,
-  //  width: window.innerWidth
-  //});
 
   useEffect(() => {
 
-    console.log('hi from handle resize useEffect');
-
     const debouncedHandleResize = debounce(function handleResize() {
-     // setDimensions({
-     //   height: window.innerHeight,
-     //   width: window.innerWidth
-     // });
-
+     
       updateElementDimensions();
+      editLayout({headerHeight: elementDimensions.height});
 
     }, 1000);
 
@@ -66,7 +38,7 @@ const Header = forwardRef( ( { siteTitle, pageTitle, getHeaderDimensions }, head
       window.removeEventListener("resize", debouncedHandleResize);
     };
 
-  });
+  }, []);
   
   function debounce(fn, ms) {
     let timer;
@@ -79,90 +51,143 @@ const Header = forwardRef( ( { siteTitle, pageTitle, getHeaderDimensions }, head
     };
   }
 
-  //const width = useCurrentWidth();
+  useEffect(() => {
+    editLayout( {headerHeight: elementDimensions.height} );
+  })
 
-  //useEffect(() => {console.log(dimensions)})
-  //useEffect(() => {console.log(`width hook - ${width}`)})
+  const [layout, editLayout] = useContext(LayoutContext);
 
-
-  
-
-  useLayoutEffect( () => getHeaderDimensions(elementDimensions) )
-
-  const [ref, elementDimensions, updateElementDimensions] = useDimensions({
+  const [heightRef, elementDimensions, updateElementDimensions] = useDimensions({
     dependencies: [],
   });
 
-  ///const [hhhRef, { wwidth, hheight }] = useElementSize();
-  
-  ///useEffect(() => {
-  ///  console.log(`layout header - ${wwidth}, ${hheight}`);
-  ///});
+  //layout.headerHeight = elementDimensions.height;
 
 return (
   <>
-  <header class="fixed top-0 z-[11]
-                 flex flex-col flex-no-wrap justify-start"
-
+  <header
           style={{ 
-            ...( menuIsOpen ? {bottom: 0} : {} ), 
-            backgroundColor: headerColor
+            position: `fixed`,
+            top: `0`, 
+            bottom: `0`,
+            width: `100vw`,
+            zIndex: `11`,
+
+            display: `grid`,
+            gridTemplateAreas: `"top" 
+                                "nav"`,
+            gridTemplateRows: `auto 1fr`,
+
+            pointerEvents: `none`,
           }}
-          
-          ref={headerRef}
   >
   
-    <div class="_headerGrid 
-                border-b border-black
-                flex-[0_1_auto]"
-         ref={ref}
+    <div ref={heightRef}
+         style={{
+           gridArea: `top`,
+           pointerEvents: `auto`,
+           backgroundColor: headerColor,
+           
+           borderColor: `black`,
+           borderBottomWidth: `1px`,
+
+           display: `grid`,
+           gap: `0px 0px`, 
+           gridTemplateColumns: `1fr auto 1fr`,
+           gridTemplateRows: `auto auto auto`,
+           gridTemplateAreas: `". . ."
+                                ". logo menu"
+                                ". breadcrumbs ."`,
+         }}
     >
                 
-      <div class="_headerGridLogo">
-        <p class="font-esqadero uppercase tracking-[0.3em] 
-                  text-[1.25rem] xs:text-[2rem] md:text-[3rem] 
-                  [text-shadow:1px_1px_2px_rgb(0,0,0)] xs:[text-shadow:1px_1px_3px_rgb(0,0,0)]
-                  [color:white] [-webkit-text-stroke:black_1px] [-moz-text-stroke:black_1px]
-                  text-center p-[0.25em]"
+      <div 
+           style={{
+            gridArea: `logo`,
+           }} 
+      >
+        {//<TextOuterStroke strokeColor="black" strokeSize="3">
+        }
+        <p                                             
+           style={{
+             display: `flex`,
+             alignItems: `center`,
+             justifyContent: `center`,
+
+             fontFamily: `"Trajan Pro 3"`,
+             fontWeight: `500`,
+             letterSpacing: `0.1em`,
+             //textTransform: `uppercase`,
+             //verticalAlign: `middle`,
+             //textAlign: `center`,
+             ...(layout.breakpoints.xs && {fontSize: `1.25rem`}),
+             ...(layout.breakpoints.sm && {fontSize: `2rem`}),
+             ...(layout.breakpoints.md && {fontSize: `3rem`}),
+
+             //fontFamily: `Montserrat`,
+           }}
         >
-          <Link to="/">
+          <Link to="/"
+                style={{
+                  display: `flex`,
+                  alignItems: `center`,
+                }}
+          >
+
+            <span style={{fontSize: `0.5em`,}}>&bull;</span>
             {siteTitle}
+            <span style={{fontSize: `0.5em`,}}>&bull;</span>
+
           </Link>
         </p>
+       {// </TextOuterStroke>
+       }
       </div> 
 
-      <div class="_headerGridMenuButton flex justify-end items-center pr-4">
+      <div 
+           style={{
+             gridArea: `menu`,
+
+             display: `flex`,
+             justifyContent: `end`,
+             alignItems: `center`,
+             paddingRight: `1rem`,
+           }}
+      >
         <MenuButton menuIsOpen={menuIsOpen} onClick={() => setMenuIsOpen(!menuIsOpen)}/>
       </div>
 
-      <div class="_headerGridBreadcrumbs">
+      <div
+           style={{
+             gridArea: `breadcrumbs`,
+           }}
+      >
         <p 
           style={{
-             ...( textOuterStrokeStyle(strokeColor, 1) )
-           }}
+            fontFamily: `"Montserrat"`,
+            fontSize: `0.75rem`
+          }}
         >
-          {/*{width} - check {dimensions.width} x {dimensions.height}*/}
           elementDimensions - {elementDimensions.width} x {elementDimensions.height}
         </p>
       </div>
 
     </div>
 
-    {//menuIsOpen &&
-      <div class="flex-[1_1_auto] [overflow-y:auto]"
-           style={{ ...(menuIsOpen ? {} : {display: `none`}) }}
-      >
-        <Menu dimensions={elementDimensions} width={elementDimensions.width}/>
-      </div>
-    }
-  
+    <div 
+         style={{
+           gridArea: `nav`,
+           overflow: `hidden`,
+           position: `relative`
+         }}
+    >
+      <Menu menuIsOpen={menuIsOpen} headerColor={headerColor} />
+    </div>
+    
   </header>
-
-  
-
   </>
-)}
-)
+)};
+
 Header.propTypes = {
   siteTitle: PropTypes.string,
 }

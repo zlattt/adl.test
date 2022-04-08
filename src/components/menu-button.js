@@ -8,10 +8,12 @@ const MenuButton = ({ menuIsOpen, onClick }) => {
 const menuIconOpen = useRef();
 const menuIconClose = useRef();
 const tl = useRef();
+
 // adding rotation: 0.01 in animation props can prevent pixel snapping
+
 function fadeOut(target) {
   gsap.killTweensOf(target);
-  return gsap.fromTo(target, { opacity: 1, scale: 1 }, { rotation: 0.01, opacity: 0, scale: 2, ease: "power2.inOut"});
+  return gsap.fromTo(target, { opacity: 1, scale: 1 }, { opacity: 0, scale: 1.5, duration: 0.3, ease: "power2.inOut"});
 }
 
 function fadeIn(target) {

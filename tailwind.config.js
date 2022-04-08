@@ -14,7 +14,8 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        esqadero: ["'Esqadero FF CY 4F'", "sans-serif"],
+        trajan: ["'Trajan Pro 3'", "serif"],
+        montserrat: ["Montserrat", "sans-serif"]
       },     
     },
   },
