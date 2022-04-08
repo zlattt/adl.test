@@ -54,7 +54,7 @@ return (
            //lineHeight: `${chapterTitleLineHeightEm}em`,
            height: `${chapterTitleImageHeightRem}rem`,
            position: `sticky`,
-           top: `calc(${chapterTitleLineHeightRem*index}rem + ${ layout.headerHeight }px)`,
+           top: `calc(${chapterTitleLineHeightRem*index-chapterTitleImageHeightRem}rem + ${ layout.headerHeight }px)`,
            //bottom: `${(data.length-(index+1))*chapterTitleLineHeightEm}em`,
            bottom: `${(data.length-index)*chapterTitleLineHeightRem-chapterTitleImageHeightRem}rem`,
            marginTop: `${index*chapterTitleLineHeightRem}rem`,
