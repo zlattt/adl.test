@@ -16,8 +16,9 @@ const themes = {
 
 const defaultContext = {
   theme: themes.light,
-  headerHeight: {},
-  breakpoints: { xs:{}, sm:{}, md:{}, lg:{}, xl:{}, xxl:{} },
+  //headerHeight: {},
+  breakpoints: {},
+  //{ xs:{}, sm:{}, md:{}, lg:{}, xl:{}, xxl:{} },
 };
 
 

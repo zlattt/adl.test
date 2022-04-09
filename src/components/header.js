@@ -55,6 +55,10 @@ const Header = ({ siteTitle, pageTitle }) => {
     editLayout( {headerHeight: elementDimensions.height} );
   })
 
+  useEffect(() => {
+    console.log(layout.breakpoints);
+  })
+
   const [layout, editLayout] = useContext(LayoutContext);
 
   const [heightRef, elementDimensions, updateElementDimensions] = useDimensions({
@@ -120,9 +124,11 @@ return (
              //textTransform: `uppercase`,
              //verticalAlign: `middle`,
              //textAlign: `center`,
-             ...(layout.breakpoints.xs && {fontSize: `1.25rem`}),
-             ...(layout.breakpoints.sm && {fontSize: `2rem`}),
              ...(layout.breakpoints.md && {fontSize: `3rem`}),
+             ...(layout.breakpoints.sm && {fontSize: `2rem`}),
+             ...(layout.breakpoints.xs && {fontSize: `1.25rem`}),
+             
+             
 
              //fontFamily: `Montserrat`,
            }}
@@ -168,8 +174,8 @@ return (
             fontSize: `0.75rem`
           }}
         >
-          elementDimensions - {elementDimensions.width} x {elementDimensions.height}
-          Breakpoint: xs({layout?.breakpoints.xs}) sm({layout?.breakpoints.sm}) md({layout?.breakpoints.md}) lg({layout?.breakpoints.lg})
+          elementDimensions - {elementDimensions.width} x {elementDimensions.height} - ({layout.headerHeight})
+          {`Breakpoint: xs(${layout.breakpoints.xs}) sm(${layout.breakpoints.sm}) md(${layout.breakpoints.md}) lg(${layout.breakpoints.lg})`}
         </p>
       </div>
 
