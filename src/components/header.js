@@ -169,6 +169,7 @@ return (
           }}
         >
           elementDimensions - {elementDimensions.width} x {elementDimensions.height}
+          `Breakpoint: xs(${layout?.breakpoints.xs}) sm(${layout?.breakpoints.sm}) md(${layout?.breakpoints.md}) lg(${layout?.breakpoints.lg})`
         </p>
       </div>
 
