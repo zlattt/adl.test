@@ -1,5 +1,5 @@
 import * as React from "react"
-import {useState, createContext, useMemo} from "react"
+import {useState, createContext, useMemo, useEffect} from "react"
 
 import { useBreakpoints, useCurrentWidth } from '../components/react-breakpoints-hook';
 
@@ -63,7 +63,7 @@ const LayoutContextCustomProvider = ({ children }) => {
   
   }
  
-  context.breakpoints = useBreakpoints({
+  const breakpoints = useBreakpoints({
     xs: {min: 0, max: 479},
     sm: {min: 480, max: 767},
     md: {min: 768, max: 1023},
@@ -72,8 +72,24 @@ const LayoutContextCustomProvider = ({ children }) => {
     xxl: {min: 1536, max: null},
   });
 
-  //console.log(context.breakpoints);
-
+  useEffect(() => {
+    editContext( breakpoints );
+  });
+  
+  useEffect(() => {
+    const loadEvent = () => {
+      console.log('page is fully loaded');
+    }
+    window.addEventListener("load", loadEvent);
+    return _ => {
+      window.removeEventListener('load', loadEvent);
+    };
+  }, []);
+  
+  useEffect(() => {
+    console.log(context.breakpoints);
+    console.log(context.firstLoadDone);
+  })
   //const contextValue = useMemo(() => ({
   //  context
   //}), [context])
