@@ -63,7 +63,7 @@ const LayoutContextCustomProvider = ({ children }) => {
   
   }
  
-  const breakpoints = useBreakpoints({
+  context.breakpoints = useBreakpoints({
     xs: {min: 0, max: 479},
     sm: {min: 480, max: 767},
     md: {min: 768, max: 1023},
@@ -72,9 +72,9 @@ const LayoutContextCustomProvider = ({ children }) => {
     xxl: {min: 1536, max: null},
   });
 
-  useEffect(() => {
-    editContext( breakpoints );
-  });
+  //useEffect(() => {
+  //  editContext( breakpoints );
+  //});
   
   useEffect(() => {
     const loadEvent = () => {
