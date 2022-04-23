@@ -3,13 +3,12 @@ import { useEffect, useRef, useState, useLayoutEffect, useContext } from "react"
 import PropTypes from "prop-types"
 import { Link } from "gatsby"
 
+import { gsap } from "gsap"
+
 import Menu from "../components/menu"
 import MenuButton from "../components/menu-button"
-
 import TextOuterStroke from "../components/textOuterStroke"
-
 //import { useElementSize } from "usehooks-ts"
-
 import { useDimensions } from "../hooks/react-hook-dimensions/index"
 
 import LayoutContext from "../components/layoutContext"
@@ -65,16 +64,34 @@ const Header = ({ siteTitle, pageTitle }) => {
     dependencies: [],
   });
 
+  const logoRef = useRef();
+  useLayoutEffect(() => {
+    if (layout.firstLoadDone) {
+      gsap.fromTo(logoRef.current, {opacity: 0}, {opacity: 1, duration: 6})
+    }
+  })
   //layout.headerHeight = elementDimensions.height;
+  window.addEventListener("load", ()=>{console.log('page is fully loaded')});
+  const overlayRef = useRef();
 
 return (
   <>
+  {layout.firstLoadDone && <div ref={overlayRef}
+       style={{
+        position: `fixed`,
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+       }}
+  >
+  </div>}
   <header
           style={{ 
             position: `fixed`,
             top: `0`, 
             bottom: `0`,
-            width: `100vw`,
+            width: `100%`,//vw`,
             zIndex: `11`,
 
             display: `grid`,
@@ -92,8 +109,11 @@ return (
            pointerEvents: `auto`,
            backgroundColor: headerColor,
            
+           margin: `10px`,
+
+           border: `1px solid`,
            borderColor: `black`,
-           borderBottomWidth: `1px`,
+           //borderBottomWidth: `1px`,
 
            display: `grid`,
            gap: `0px 0px`, 
@@ -105,18 +125,22 @@ return (
          }}
     >
                 
-      <div 
+      <div ref={logoRef}
            style={{
             gridArea: `logo`,
-           }} 
+
+            display: `flex`,
+            alignItems: `center`,
+            justifyContent: `center`,
+           }}
       >
         {//<TextOuterStroke strokeColor="black" strokeSize="3">
         }
-        <p                                             
+        <p class="text-[1rem] xs:text-[1.25rem] sm:text-[1.5] md:text-[2rem]"                                            
            style={{
-             display: `flex`,
-             alignItems: `center`,
-             justifyContent: `center`,
+             //display: `flex`,
+             //alignItems: `center`,
+             //justifyContent: `center`,
 
              fontFamily: `"Trajan Pro 3"`,
              fontWeight: `500`,
@@ -126,9 +150,10 @@ return (
              //textAlign: `center`,
             
              
-             ...(layout.breakpoints.xs && {fontSize: `1.25rem`}),
-             ...(layout.breakpoints.sm && {fontSize: `2rem`}),
-             ...(layout.breakpoints.md && {fontSize: `3rem`}),            
+             //...(layout.breakpoints.xs && {fontSize: `1.25rem`}),
+             //...(layout.breakpoints.sm && {fontSize: `2rem`}),
+             //...(layout.breakpoints.md && {fontSize: `3rem`}), 
+                        
              
 
              //fontFamily: `Montserrat`,
@@ -142,7 +167,9 @@ return (
           >
 
             <span style={{fontSize: `0.5em`,}}>&bull;</span>
-            {siteTitle}
+            {//siteTitle
+            }
+            Art<br/>Decor<br/>Lab
             <span style={{fontSize: `0.5em`,}}>&bull;</span>
 
           </Link>
@@ -169,7 +196,7 @@ return (
              gridArea: `breadcrumbs`,
            }}
       >
-        <p 
+      {/*  <p 
           style={{
             fontFamily: `"Montserrat"`,
             fontSize: `0.75rem`
@@ -177,7 +204,7 @@ return (
         >
           elementDimensions - {elementDimensions.width} x {elementDimensions.height} - ({layout.headerHeight})
           {`Breakpoint: xs(${layout.breakpoints.xs}) sm(${layout.breakpoints.sm}) md(${layout.breakpoints.md}) lg(${layout.breakpoints.lg})`}
-        </p>
+        </p> */}
       </div>
 
     </div>
