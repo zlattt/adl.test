@@ -71,7 +71,7 @@ const Header = ({ siteTitle, pageTitle }) => {
     }
   })
   //layout.headerHeight = elementDimensions.height;
-  window.addEventListener("load", ()=>{console.log('page is fully loaded')});
+  //window.addEventListener("load", ()=>{console.log('page is fully loaded')});
   const overlayRef = useRef();
 
 return (
