@@ -81,9 +81,9 @@ const LayoutContextCustomProvider = ({ children }) => {
       console.log('page is fully loaded');
     }
     if (document.readyState === "complete") {
-      loadEvent();
+      console.log('page is readyState complete');
     } else {
-        window.addEventListener("load", loadEvent);
+        window.addEventListener('load', loadEvent);
         return () => window.removeEventListener('load', loadEvent);
     };
   }, []);
