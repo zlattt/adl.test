@@ -63,7 +63,7 @@ const LayoutContextCustomProvider = ({ children }) => {
   
   }
  
-  context.breakpoints = useBreakpoints({
+  const breakpoints = useBreakpoints({
     xs: {min: 0, max: 479},
     sm: {min: 480, max: 767},
     md: {min: 768, max: 1023},
@@ -72,17 +72,19 @@ const LayoutContextCustomProvider = ({ children }) => {
     xxl: {min: 1536, max: null},
   });
 
-  //useEffect(() => {
-  //  editContext( breakpoints );
-  //});
+  useEffect(() => {
+    editContext({ ...breakpoints });
+  });
   
   useEffect(() => {
     const loadEvent = () => {
       console.log('page is fully loaded');
     }
-    window.addEventListener("load", loadEvent);
-    return _ => {
-      window.removeEventListener('load', loadEvent);
+    if (document.readyState === "complete") {
+      loadEvent();
+    } else {
+        window.addEventListener("load", loadEvent);
+        return () => window.removeEventListener('load', loadEvent);
     };
   }, []);
   
