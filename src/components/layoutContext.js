@@ -79,9 +79,11 @@ const LayoutContextCustomProvider = ({ children }) => {
   useEffect(() => {
     const loadEvent = () => {
       console.log('page is fully loaded');
+      editContext( {firstLoadDone: true} )
     }
     if (document.readyState === "complete") {
       console.log('page is readyState complete');
+      loadEvent();
     } else {
         window.addEventListener('load', loadEvent);
         return () => window.removeEventListener('load', loadEvent);

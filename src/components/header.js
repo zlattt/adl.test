@@ -69,7 +69,7 @@ const Header = ({ siteTitle, pageTitle }) => {
     if (layout.firstLoadDone) {
       gsap.fromTo(logoRef.current, {opacity: 0}, {opacity: 1, duration: 6})
     }
-  })
+  }, [layout.firstLoadDone])
   //layout.headerHeight = elementDimensions.height;
   //window.addEventListener("load", ()=>{console.log('page is fully loaded')});
   const overlayRef = useRef();
