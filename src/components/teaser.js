@@ -9,7 +9,7 @@ import TextOuterStroke from "../components/textOuterStroke"
 
 import LayoutContext from "../components/layoutContext"
 
-
+import Line from "../components/line"
 
 const Teaser = ({ data }) => {
 
@@ -60,10 +60,12 @@ return (
            marginTop: `${index*chapterTitleLineHeightRem}rem`,
            marginBottom: `${(data.length-(index+1))*chapterTitleLineHeightRem}rem`,
            backgroundColor: `white`,
-           border: `solid black`,
-           borderWidth: `1px 0px`
+           //border: `solid black`,
+           //borderWidth: `1px`,// 0px`
+           //boxShadow: `4px 4px 2px gray`
          }}
     >
+    
     {//<TextOuterStroke strokeColor="black" strokeSize="3">
     }
     <h2 
@@ -72,9 +74,12 @@ return (
           lineHeight: `${chapterTitleLineHeightEm}em`,
           fontFamily: `"Trajan Pro 3"`,
           position: `absolute`,
+          //top: `calc(${index*chapterTitleLineHeightRem}rem + ${ layout.headerHeight }px)`,
+          //bottom: `0`,
           top: 0,
         }}
     >
+      <Line bottom="-1rem" />
       {item.title}
     </h2>
     {//</TextOuterStroke>

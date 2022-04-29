@@ -160,18 +160,20 @@ return (
 
     <nav 
          style={{
-           display: `grid`,
-           gridTemplateColumns: `1fr 1fr`,
+           display: `block`,
+           //gridTemplateColumns: `1fr 1fr`,
            //gridTemplateRows: `1fr 1fr 1fr 1fr 1fr`,
+           //maxWidth: `1024px`
          }}
     >
       <ul
           style={{
             display: `grid`,
-            gridAutoRows: `1fr`,
-
-            justifySelf: `center`,
-            alignSelf: `center`,
+            //gridAutoRows: `1fr`,
+            gridAutoFlow: `column`,
+            //justifySelf: `center`,
+            //alignSelf: `center`,
+            justifyItems: `center`,
           }}        
       >
 
@@ -183,7 +185,7 @@ return (
         >
 
           { index && 
-            <Line top="0" size="2" offset={index/menuItems.length} timeline={tl} duration="1" delay={(menuItems.length-index)*0.1} /> 
+            <Line top="0" size="1" offset={index/menuItems.length} timeline={tl} duration="1" delay={(menuItems.length-index)*0.1} /> 
           }
 
           <Link to={ item.url }>
@@ -211,7 +213,7 @@ return (
       <p>ArtDecorLab</p>
     </div>
           
-    <Line bottom="1rem" offset="0.3" />
+    <Line bottom="1rem" offset="0.3" timeline={tl} />
 
   </div>
   </>

@@ -40,7 +40,7 @@ useEffect(() => {
 return (
 <>
 
-<button name="Menu" onClick={onClick} class="h-7 w-7 relative">
+<button name="Menu" onClick={onClick} class="h-4 w-4 md:h-7 md:w-7 relative">
 
    {/*<svg class="h-5 w-5 
                   xs:h-6 xs:w-6 
@@ -49,7 +49,7 @@ return (
     <path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
   </svg>*/}
   
-  <svg ref={menuIconOpen} class="h-7 w-7 absolute top-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28">
+  <svg ref={menuIconOpen} class="h-4 w-4 md:h-7 md:w-7 absolute top-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28">
     <g transform="matrix(2,0,0,2,0,0)"><g>
       <line x1="13.5" y1="2" x2="0.5" y2="2" style={{fill: "none", stroke: "#000000", strokeLinecap: "round", strokeLinejoin: "round"}}></line>
       <line x1="13.5" y1="7" x2="0.5" y2="7" style={{fill: "none", stroke: "#000000", strokeLinecap: "round", strokeLinejoin: "round"}}></line>
@@ -57,7 +57,7 @@ return (
     </g></g>
   </svg>
   
-  <svg ref={menuIconClose} class="h-7 w-7 absolute top-0 opacity-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28">
+  <svg ref={menuIconClose} class="h-4 w-4 md:h-7 md:w-7 absolute top-0 opacity-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28">
     <g transform="matrix(2,0,0,2,0,0)"><g>
       <line x1="13.5" y1="0.5" x2="0.5" y2="13.5" style={{fill: "none", stroke: "#000000", strokeLinecap: "round", strokeLinejoin: "round"}}></line>
       <line x1="0.5" y1="0.5" x2="13.5" y2="13.5" style={{fill: "none", stroke: "#000000", strokeLinecap: "round", strokeLinejoin: "round"}}></line>

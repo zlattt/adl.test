@@ -90,7 +90,9 @@ return (
           style={{ 
             position: `fixed`,
             top: `0`, 
-            bottom: `0`,
+            //bottom: `0`,
+            height: `100vh`,
+            //marginBottom: `-50vh`,
             width: `100%`,//vw`,
             zIndex: `11`,
 
@@ -136,14 +138,14 @@ return (
       >
         {//<TextOuterStroke strokeColor="black" strokeSize="3">
         }
-        <p class="text-[1rem] xs:text-[1.25rem] sm:text-[1.5] md:text-[2rem]"                                            
+        <p class="text-[1.25rem] sm:text-[1.5] md:text-[2rem]"                                            
            style={{
              //display: `flex`,
              //alignItems: `center`,
              //justifyContent: `center`,
 
              fontFamily: `"Trajan Pro 3"`,
-             fontWeight: `500`,
+             fontWeight: `400`,
              letterSpacing: `0.1em`,
              //textTransform: `uppercase`,
              //verticalAlign: `middle`,
@@ -168,8 +170,9 @@ return (
 
             <span style={{fontSize: `0.5em`,}}>&bull;</span>
             {//siteTitle
+            //<br/>
             }
-            Art<br/>Decor<br/>Lab
+            ArtDecorLab
             <span style={{fontSize: `0.5em`,}}>&bull;</span>
 
           </Link>
@@ -185,7 +188,7 @@ return (
              display: `flex`,
              justifyContent: `end`,
              alignItems: `center`,
-             paddingRight: `1rem`,
+             paddingRight: `0.5rem`,
            }}
       >
         <MenuButton menuIsOpen={menuIsOpen} onClick={() => setMenuIsOpen(!menuIsOpen)}/>
