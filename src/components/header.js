@@ -186,7 +186,7 @@ return (
              gridArea: `menu`,
 
              display: `flex`,
-             justifyContent: `end`,
+             justifyContent: `flex-end`,
              alignItems: `center`,
              paddingRight: `0.5rem`,
            }}
