@@ -9,8 +9,9 @@ const [ context, editContext ] = useContext(LayoutContext);
 
 return (
 <>
-<div style={{
-       margin: `10px`,
+<div class="my-[10px]"
+     style={{
+       //margin: `10px`,
        display: `flex`,
        alignItems: `center`,
        justifyContent: `center`,
