@@ -9,7 +9,7 @@ const [ context, editContext ] = useContext(LayoutContext);
 
 return (
 <>
-<div class="my-[10px]"
+<div class="py-[10px]"
      style={{
        //margin: `10px`,
        display: `flex`,
