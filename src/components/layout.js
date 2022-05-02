@@ -36,8 +36,8 @@ const Layout = ({ children, pageTitle }) => {
   return (
     <>
     <LayoutContextCustomProvider>
-      {//<Header siteTitle={data.site.siteMetadata?.title || `Title`} pageTitle={pageTitle}/>
-}
+      <Header siteTitle={data.site.siteMetadata?.title || `Title`} pageTitle={pageTitle}/>
+
       <PageContentWrapper>
         <main>
           

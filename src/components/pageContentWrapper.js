@@ -9,20 +9,20 @@ const [ context, editContext ] = useContext(LayoutContext);
 
 return (
 <>
-<div class="py-[10px]"
+<div 
      style={{
-       //margin: `10px`,
+       margin: `10px`,
        display: `flex`,
        alignItems: `center`,
        justifyContent: `center`,
        border: `1px solid`,
        borderColor: `black`,
 
-       //visibility: `hidden`,
+       visibility: `hidden`,
      }}
      id="dummyHeader"
 >
-<p class="text-[1.25rem] sm:text-[1.5rem] md:text-[2rem]"                                            
+  <p class="text-[1.25rem] sm:text-[1.5rem] md:text-[2rem]"                                            
            style={{
              fontFamily: `"Trajan Pro 3"`,
              fontWeight: `400`,
@@ -32,7 +32,7 @@ return (
 
             ArtDecorLab
 
-        </p>
+  </p>
 
 </div>
 <div
