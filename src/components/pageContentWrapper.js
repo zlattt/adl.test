@@ -22,7 +22,7 @@ return (
      }}
      id="dummyHeader"
 >
-<p class="text-[1.25rem] sm:text-[1.5] md:text-[2rem]"                                            
+<p class="text-[1.25rem] sm:text-[1.5rem] md:text-[2rem]"                                            
            style={{
              fontFamily: `"Trajan Pro 3"`,
              fontWeight: `400`,
