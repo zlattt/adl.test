@@ -29,21 +29,9 @@ return (
              letterSpacing: `0.1em`,
            }}
         >
-          <div
-                style={{
-                  display: `flex`,
-                  alignItems: `center`,
-                }}
-          >
 
-            <span style={{fontSize: `0.5em`,}}>&bull;</span>
-            {//siteTitle
-            //<br/>
-            }
             ArtDecorLab
-            <span style={{fontSize: `0.5em`,}}>&bull;</span>
 
-          </div>
         </p>
 
 </div>
