@@ -18,7 +18,7 @@ return (
        border: `1px solid`,
        borderColor: `black`,
 
-       visibility: `hidden`,
+       //visibility: `hidden`,
      }}
      id="dummyHeader"
 >
