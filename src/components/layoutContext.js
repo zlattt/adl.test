@@ -64,7 +64,7 @@ const LayoutContextCustomProvider = ({ children }) => {
   }
  
   context.breakpoints = useBreakpoints({
-    xs: {min: 0, max: 479},
+    xs: {min: 1, max: 479},
     sm: {min: 480, max: 767},
     md: {min: 768, max: 1023},
     lg: {min: 1024, max: 1279},
