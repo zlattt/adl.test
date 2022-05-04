@@ -165,6 +165,9 @@ return (
                 style={{
                   display: `flex`,
                   alignItems: `center`,
+                  ...(layout.breakpoints.xs && {fontSize: `1.25rem`}),
+                  ...(layout.breakpoints.sm && {fontSize: `2rem`}),
+                  ...(layout.breakpoints.md && {fontSize: `3rem`}), 
                 }}
           >
 
