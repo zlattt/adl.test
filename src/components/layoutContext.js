@@ -62,7 +62,7 @@ const LayoutContextCustomProvider = ({ children }) => {
     }
   
   }
- 
+ useEffect(() => {
   context.breakpoints = useBreakpoints({
     xs: {min: 1, max: 479},
     sm: {min: 480, max: 767},
@@ -71,7 +71,7 @@ const LayoutContextCustomProvider = ({ children }) => {
     xl: {min: 1280, max: 1535},
     xxl: {min: 1536, max: null},
   });
-
+ }, []);
   //useEffect(() => {
   //  editContext({ ...breakpoints });
   //});
