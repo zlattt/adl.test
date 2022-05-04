@@ -13,7 +13,18 @@ import { useDimensions } from "../hooks/react-hook-dimensions/index"
 
 import LayoutContext from "../components/layoutContext"
 
+import { useBreakpoints, useCurrentWidth } from '../components/react-breakpoints-hook';
+
 const Header = ({ siteTitle, pageTitle }) => {
+
+  const breakpoints = useBreakpoints({
+    xs: {min: 1, max: 479},
+    sm: {min: 480, max: 767},
+    md: {min: 768, max: 1023},
+    lg: {min: 1024, max: 1279},
+    xl: {min: 1280, max: 1535},
+    xxl: {min: 1536, max: null},
+  });
 
   const strokeColor = "black";
   const headerColor = "white"
@@ -167,9 +178,9 @@ return (
                 style={{
                   display: `flex`,
                   alignItems: `center`,
-                  ...(layout.breakpoints.xs && {fontSize: `1.25rem`}),
-                  ...(layout.breakpoints.sm && {fontSize: `2rem`}),
-                  ...(layout.breakpoints.md && {fontSize: `3rem`}), 
+                  ...(breakpoints.xs && {fontSize: `1.25rem`}),
+                  ...(breakpoints.sm && {fontSize: `2rem`}),
+                  ...(breakpoints.md && {fontSize: `3rem`}), 
                 }}
           >
 
