@@ -138,7 +138,8 @@ return (
       >
         {//<TextOuterStroke strokeColor="black" strokeSize="3">
         }
-        <p class="text-[1.25rem] sm:text-[1.5rem] md:text-[2rem]"                                            
+        <p {//class="text-[1.25rem] sm:text-[1.5rem] md:text-[2rem]"        
+        }                                    
            style={{
              //display: `flex`,
              //alignItems: `center`,
